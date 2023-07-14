@@ -1,0 +1,15 @@
+.composite-card{
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    background: #1d203c;
+    .components{
+        width: 100%;
+        .actions{
+            label{
+                color: #fff;
+                font-size: 14px;
+            }
+        }
+    }
+}

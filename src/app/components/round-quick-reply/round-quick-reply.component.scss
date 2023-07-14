@@ -1,0 +1,15 @@
+ul{
+  padding-left: 0;
+  list-style: none;
+}
+.suggestions{
+    overflow-y: hidden;
+    overflow-x: auto;
+    display: flex;
+    flex-direction: row;
+    white-space: nowrap;
+  }
+
+  .btn-left{
+    justify-content: left;
+  }

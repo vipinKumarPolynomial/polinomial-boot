@@ -1,0 +1,38 @@
+<ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+  <div ngxSlickItem class="ngx-item slide" *ngFor="let item of carouselItems;">
+    <div class="ticket neum-shadow">
+      <h5 class="text-center ticket-header pt-3 pb-3">
+        <span class="ticket-icon mr-2">
+          <img src="https://coliveshona.blob.core.windows.net/coliveshonabot/Open%20ticket%20%E2%80%93%201.svg" alt="ticket-icon"> 
+        </span>
+        <span>{{ item.title  || 'Ticket' }}</span>
+      </h5>
+      <table class="table">
+        <tbody style="color: white;">
+          <tr *ngFor="let t of item.data">
+            <td>
+              <span class="pl-2 pr-2 font-600">{{ t.key }}</span>
+              <span class="pl-2 pr-2 description">{{ t.value }}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <ul class="d-flex pl-0 justify-content-center mt-auto">
+        <ng-container *ngIf="carousalStatus">
+          <li *ngFor="let action of item.actions;let first = first;let last = last" >
+            <button class="rounded btn-custom neum-shadow hover-effect" [ngClass]="{'mr-1':first, 'ml-1': last}"
+            *ngIf="!action.redirectionTo" (click)="onButtonClick(action.value,item.data,item.attachment)">{{ action.title }}</button>
+              <a class="rounded btn-custom drop-shadow hover-effect text-decoration-none" [ngClass]="{'mr-1':first, 'ml-1': last}" *ngIf="action.redirectionTo" href="{{action.redirectionTo}}" target="_blank">{{ action.title }}</a>
+          </li>
+        </ng-container>
+
+
+      </ul>
+      <div class="ticket-description" *ngIf="expand">
+        <i (click)="this.showLess()">X</i>
+        <h5>{{ this.ticketKey }}</h5>
+        <p>{{ this.ticketValue }}</p>
+      </div>
+    </div>
+  </div>
+</ngx-slick-carousel>

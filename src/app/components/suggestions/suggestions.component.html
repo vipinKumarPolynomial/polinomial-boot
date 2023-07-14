@@ -1,0 +1,9 @@
+<!-- <div class="suggestions horizontal-scroll-wrapper" >
+  
+</div> -->
+
+<ul class="d-flex horizontal">
+  <li *ngFor="let b of suggestionButton">
+    <app-rounded-button suggestionButtonData="{{b.title}}"></app-rounded-button>
+  </li>
+</ul>

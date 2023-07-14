@@ -1,0 +1,29 @@
+$background: #1d203c;
+.typo {
+  border-radius: 40px!important;
+  border-width: 0px;
+  outline: none;
+  margin: 12px;
+  padding: 4px 12px;
+  height: auto;
+  font-size: 14px;
+  line-height: 1.5em;
+
+  img {
+    height: 30px;
+  }
+
+}
+
+.btn-custom {
+  background-color: $background;
+  color:white;
+}
+
+.btn-white {
+  background-color:white;
+  color:#262938;
+}
+.shadow {
+  box-shadow: 3px 3px 7px #0d0f1c, -1px -1px 6px #2d315c!important;
+}

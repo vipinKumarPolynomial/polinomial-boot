@@ -1,0 +1,15 @@
+<ul class="d-flex horizontal iqreply flex-wrap short" *ngIf="plainQuickReplyBtn && quickReplys.length <= 5">
+    <li *ngFor="let b of quickReplys">
+        <app-rectangle-edged-button suggestionButtonData="{{b.value}}" suggestionButtonText="{{b.text}}" (hideButtonStatus)="buttonStatus($event)" [isMultipleSelect]="isMultipleSelect"></app-rectangle-edged-button>
+    </li>
+</ul>
+<!-- <ul class="d-flex btn-left flex-nowrap wide" style="overflow: overlay;" *ngIf="plainQuickReplyBtn && quickReplys.length > 5">
+  <li *ngFor="let b of quickReplys">
+      <app-rectangle-edged-button suggestionButtonData="{{b.value}}" (hideButtonStatus)="buttonStatus($event)"></app-rectangle-edged-button>
+  </li>
+</ul> -->
+<ngx-slick-carousel class="carousel iqreply" #slickModal="slick-carousel" [config]="slideConfig" *ngIf="plainQuickReplyBtn && quickReplys.length > 5">
+  <div ngxSlickItem class="ngx-item slide" *ngFor="let b of quickReplys; let i = index">
+    <app-rectangle-edged-button suggestionButtonData="{{b.value}}" suggestionButtonText="{{b.text}}" (hideButtonStatus)="buttonStatus($event)" [isMultipleSelect]="isMultipleSelect"></app-rectangle-edged-button>
+  </div>
+</ngx-slick-carousel>

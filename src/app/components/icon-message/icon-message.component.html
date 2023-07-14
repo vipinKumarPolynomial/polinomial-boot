@@ -1,0 +1,6 @@
+<h5 class="ml-2 mr-2">
+    <span class="icon">
+        <img [src]="iconMessage.url" [alt]="iconMessage.message" />
+    </span>
+    <span class="ml-2 message-text" [ngClass]="{'not-greeting':!greeting}">{{ iconMessage.message }}</span>
+</h5>

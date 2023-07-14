@@ -1,0 +1,25 @@
+.container {
+  height: 28rem;
+  width: 27rem;
+  box-shadow: 12px 12px 20px -12px rgba(0, 0, 0, 0.35);
+  border: 1px solid #c7c7c7;
+  border-radius: 12px;
+}
+
+.OTP-width {
+     width: 2rem;
+    margin: 14px 7px 14px 0px;
+    border: 1px solid #afaeaf;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #afaeaf;
+    height: 2rem;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0
+}
+

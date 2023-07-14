@@ -1,0 +1,51 @@
+
+// feedback css
+$font-weight:("light":300,"normal":400,"medium":500,"bold":700 );
+.small-box{
+    max-width: 490px;
+    margin: 15px auto;
+}
+.font-300{
+    font-weight: map-get($font-weight , "light" );
+}
+.font-600{
+    font-weight: map-get($font-weight , "bold" );
+}
+.Star-element{
+    span{
+       
+        margin: 0px 5px;
+        font-size: 30px;
+    }
+    .fa-star{
+        color:#757575;
+    }
+    .fa-star.checked{
+        color: #f7cd01;
+   
+    }
+}
+
+.form-input{
+    width:100%;
+    padding:10px;
+}
+.text-dark-pink{
+color:#e63756;
+}
+.btn-custom{
+    background-color: #1d203c;
+    color: white;
+}
+.rounded{
+    border-radius: 4px !important;
+    padding: 8px 16px;
+    outline: none;
+    line-height: 2em;
+    border-width: 0px;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 12px;
+    display: table;
+    margin: 0 auto;
+}

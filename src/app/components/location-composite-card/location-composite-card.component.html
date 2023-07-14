@@ -1,0 +1,18 @@
+<div class="composite-card neum-shadow">
+    <div class="components" *ngFor="let item of compositeCard.components">
+        <div *ngIf="item.type=='actionCard'" class="actions">
+            <label>{{item.title}}</label>
+            <div class="actionItem" *ngFor="let action of item.actions">
+                <div class="actionInputs" *ngFor="let inputs of action.inputs">
+                    <app-textbox [iconUrl]="inputs.iconUrl" [inputType]="inputs.inputType"></app-textbox>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="item.type=='slider'" class="actions">
+            <app-slider [sliderData]="item"></app-slider>
+        </div>
+        <div *ngIf="item.type=='listView'" class="actions">
+            <app-listview [listview]="item"></app-listview>
+        </div>
+    </div>
+</div>

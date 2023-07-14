@@ -1,0 +1,14 @@
+<!-- ***********listing ****************-->
+<div class="content-area neum-shadow ticket pb-1 p-4  small-box">
+    <h5 class="text-white font-400 text-center mb-3">{{ listData.title }}</h5>
+    <ul class="category pl-0 list-element">
+      <li *ngFor="let list of listToShow;" (click)="list.open=!list.open" class="category-list"><a href="#" class="text-white active"><i class="fa" [ngClass]="list.open?'fa-angle-up':'fa-angle-down'" aria-hidden="true"></i>{{ list.category }}</a>
+        <ul *ngIf="list.subcategories.length>0 && list.open" class="sub-category pl-0 list-element">
+          <li *ngFor="let subList of list.subcategories" class="sub-category-listing"><a href="#" class="text-white sub-category-link" (click)="onButtonClick(subList.value)"> {{ subList.name }}</a></li>
+        </ul>
+      </li> 
+    </ul>
+    <div class="text-center" *ngIf="listData.data.length>limit">
+      <button (click)="showMoreLess()" class="rounded neum-shadow hover-effect btn-custom">{{ buttonText }}</button>
+    </div>
+  </div>

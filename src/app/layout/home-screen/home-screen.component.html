@@ -1,0 +1,957 @@
+<div class="loader-block" *ngIf="loaderText" [@fadeInOut]>
+  <div class="CssLoaderStyles" id="AjaxLoader">
+    <div class="CssLoaderAlign">
+      <div class="Logo-loader"></div>
+      <div class="logoloader"></div>
+    </div>
+    <h4>{{ loaderText }}</h4>
+  </div>
+</div>
+<div
+  class="chat-frame"
+  [ngClass]="
+    theme == 'light' ? (orange == true ? 'light orange' : 'light') : ''
+  "
+  #mainframe
+>
+  <!-- Home screen header-->
+  <!-- Home screen header with sharp edge true-->
+  <div
+    class="frame-header neum-shadow"
+    *ngIf="screen === 'home' && orange == false && sharpEdge"
+    #frameheader
+  >
+    <div class="bot-controls-container">
+      <div
+        class="sos-button"
+        *ngIf="showSOSButton"
+        title="I need emergency assistance"
+        (click)="sendMessage('I need emergency assistance')"
+      >
+        <object
+          class="full-width"
+          type="image/svg+xml"
+          data="assets/sos.svg"
+        ></object>
+      </div>
+      <div
+        class="sos-button"
+        *ngIf="showContactUs"
+        title="Contact Us"
+        (click)="sendMessage('Contact Us')"
+      >
+        <object
+          class="full-width"
+          type="image/svg+xml"
+          data="assets/contact_us.svg"
+        ></object>
+      </div>
+      <div class="close-button" *ngIf="showMinimizeButton">
+        <img src="assets/Minimize arrow.png" />
+      </div>
+    </div>
+    <div class="logo">
+      <img [src]="avatarUri" *ngIf="avatarUri" />
+    </div>
+    <h4>{{ displayName }}</h4>
+    <div class="clear"></div>
+    <div *ngFor="let c of chatArray" [@fadeInOut]>
+      <ng-container *ngIf="c.type == 1">
+        <app-icon-message
+          *ngIf="isGreeting(c.response)"
+          [greeting]="true"
+          [iconMessage]="c.response.value"
+        >
+        </app-icon-message>
+      </ng-container>
+    </div>
+  </div>
+
+  <!-- Home screen header with sharp edge true-->
+  <div
+    class="frame-sub-header neum-shadow"
+    *ngIf="screen === 'home' && orange == true && sharpEdge"
+    #frameheader
+  >
+    <div class="bot-controls-container">
+      <div
+        *ngIf="mode === 'bot' && showChatButton"
+        class="handoff-button"
+        title="Connect to a human agent"
+        (click)="sendMessage('Connect to a human agent')"
+      >
+        <object
+          class="full-width"
+          type="image/svg+xml"
+          data="assets/live-chat.svg"
+        ></object>
+      </div>
+      <div
+        class="handoff-button"
+        *ngIf="mode === 'agent' && showChatButton"
+        title="End chat with agent and connect with bot"
+        style="width: 32px; height: 33px; padding: 0px"
+        (click)="sendMessage('end')"
+      >
+        <img
+          style="width: 32px !important; height: 32px !important"
+          class="bot-icon"
+          [src]="avatarUri"
+          *ngIf="avatarUri"
+        />
+      </div>
+      <div
+        class="sos-button"
+        *ngIf="showSOSButton"
+        title="I need emergency assistance"
+        (click)="sendMessage('I need emergency assistance')"
+      >
+        <object
+          class="full-width"
+          type="image/svg+xml"
+          data="assets/sos.svg"
+        ></object>
+      </div>
+      <div
+        class="sos-button"
+        *ngIf="showContactUs"
+        title="Contact Us"
+        (click)="sendMessage('Contact Us')"
+      >
+        <object
+          class="full-width"
+          type="image/svg+xml"
+          data="assets/contact_us.svg"
+        ></object>
+      </div>
+      <div class="close-button" *ngIf="showMinimizeButton">
+        <img src="assets/Minimize arrow.png" />
+      </div>
+    </div>
+
+    <div class="head_wrap">
+      <img
+        [src]="avatarUri"
+        *ngIf="avatarUri"
+        alt="colive"
+        class="cursor-pointer"
+      />
+      <h4 (click)="showHomeScreen()" class="cursor-pointer">
+        {{ displayName }}
+      </h4>
+      <!-- <span>{{ botType }}</span> -->
+    </div>
+  </div>
+
+  <!-- Home screen header with sharp edge false-->
+  <div
+    style="display: flex; align-items: center"
+    class="frame-header neum-shadow frame-sharpe-edge"
+    *ngIf="screen === 'home' && orange == false && !sharpEdge"
+    #frameheader
+  >
+    <div
+      style="
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        position: absolute;
+        width: 100%;
+        left: 40px;
+        top: 50px;
+      "
+      class="bot-controls-container"
+    >
+      <div
+        style="
+          width: 32px;
+          height: 33px;
+          cursor: pointer;
+          margin-right: 1px;
+          padding: 6px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        "
+        class="sos-button"
+        *ngIf="showSOSButton"
+        title="I need emergency assistance"
+        (click)="sendMessage('I need emergency assistance')"
+      >
+        <object
+          class="full-width"
+          type="image/svg+xml"
+          data="assets/sos.svg"
+        ></object>
+      </div>
+
+      <div
+        class="sos-button"
+        *ngIf="showContactUs"
+        title="Contact Us"
+        (click)="sendMessage('Contact Us')"
+      >
+        <object
+          class="full-width"
+          type="image/svg+xml"
+          data="assets/contact_us.svg"
+        ></object>
+      </div>
+    </div>
+    <div class="logo">
+      <img [src]="avatarUri" *ngIf="avatarUri" />
+    </div>
+  </div>
+
+  <!-- Chat screen header with sharp edge true-->
+  <div
+    class="frame-header-white neum-shadow"
+    *ngIf="screen === 'chat' && orange == false && sharpEdge"
+    #frameheader
+  >
+    <div class="logo">
+      <img
+        (click)="showHomeScreen()"
+        class="cursor-pointer"
+        [src]="avatarUri"
+        *ngIf="avatarUri"
+      />
+      <div class="bot-name">{{ displayName }}</div>
+    </div>
+    <div class="bot-controls-container">
+      <div
+        class="sos-button"
+        *ngIf="showSOSButton"
+        title="I need emergency assistance"
+        (click)="sendMessage('I need emergency assistance')"
+      >
+        <object
+          class="full-width"
+          type="image/svg+xml"
+          data="assets/sos.svg"
+        ></object>
+      </div>
+      <div
+        class="sos-button"
+        *ngIf="showContactUs"
+        title="Contact Us"
+        (click)="sendMessage('Contact Us')"
+      >
+        <object
+          class="full-width"
+          type="image/svg+xml"
+          data="assets/contact_us.svg"
+        ></object>
+      </div>
+      <div class="close-button" *ngIf="showMinimizeButton">
+        <img src="assets/Minimize arrow.png" />
+      </div>
+    </div>
+
+    <div class="clear"></div>
+    <div *ngFor="let c of chatArray" [@fadeInOut]>
+      <ng-container *ngIf="c.type == 1">
+        <app-icon-message
+          *ngIf="isGreeting(c.response)"
+          [greeting]="true"
+          [iconMessage]="c.response.value"
+        >
+        </app-icon-message>
+      </ng-container>
+    </div>
+  </div>
+
+  <!-- Chat screen header with sharp edge false-->
+  <div
+    class="frame-sub-header neum-shadow frame-sharpe-edge"
+    *ngIf="screen === 'chat' && !sharpEdge"
+    #frameheader
+  >
+    <div
+      style="
+        position: absolute;
+        top: 58%;
+        right: 4%;
+        width: 87%;
+        justify-content: flex-start;
+        background: white;
+        border-radius: 0px 20px 0px 0px;
+      "
+      class="bot-controls-container"
+    >
+      <div
+        style="
+          width: 32px;
+          height: 33px;
+          cursor: pointer;
+          margin-right: 1px;
+          padding: 6px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        "
+        class="sos-button"
+        *ngIf="showSOSButton"
+        title="I need emergency assistance"
+        (click)="sendMessage('I need emergency assistance')"
+      >
+        <object
+          class="full-width"
+          type="image/svg+xml"
+          data="assets/sos.svg"
+        ></object>
+      </div>
+      <div
+        style="
+          width: 32px;
+          height: 33px;
+          cursor: pointer;
+          margin-right: 1px;
+          padding: 6px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        "
+        *ngIf="mode === 'bot' && showChatButton"
+        class="handoff-button sos-button"
+        title="Connect to a human agent"
+        (click)="sendMessage('Connect to a human agent')"
+      >
+        <object
+          class="full-width"
+          type="image/svg+xml"
+          data="assets/live-chat.svg"
+        ></object>
+      </div>
+      <div
+        class="handoff-button sos-button"
+        *ngIf="mode === 'agent' && showChatButton"
+        style="width: 32px; height: 33px; padding: 0px"
+        title="End chat with agent and connect with bot"
+        (click)="sendMessage('end')"
+      >
+        <img
+          style="width: 32px !important; height: 32px !important"
+          class="bot-icon"
+          [src]="avatarUri"
+          *ngIf="avatarUri"
+        />
+      </div>
+
+      <div
+        class="sos-button"
+        *ngIf="showContactUs"
+        title="Contact Us"
+        (click)="sendMessage('Contact Us')"
+      >
+        <object
+          class="full-width"
+          type="image/svg+xml"
+          data="assets/contact_us.svg"
+        ></object>
+      </div>
+      <div class="close-button" *ngIf="showMinimizeButton && false">
+        <img src="assets/Minimize arrow.png" />
+      </div>
+    </div>
+
+    <div class="head_wrap">
+      <img
+        [src]="avatarUri"
+        *ngIf="avatarUri"
+        alt="colive"
+        class="cursor-pointer"
+        (click)="showHomeScreen()"
+      />
+      <!-- <h4 (click)="showHomeScreen()" class="cursor-pointer">
+        {{ displayName }}
+      </h4> -->
+      <!-- <span>{{ botType }}</span> -->
+    </div>
+  </div>
+
+  <div [ngClass]="!sharpEdge ? 'frame-chat-body' : 'frame-body'">
+    <div class="frame-body" [ngStyle]="fontSize && !fontType ? {'font-size': fontSize} : fontType && !fontSize ? {'font-family': fontType} : fontSize && fontType ? {'font-size': fontSize, 'font-family': fontType} : {}" #scrollframe>
+      <div class="container">
+        <!-- <div class="row" [@listAnimation]="chatArray.length">
+                    <div class="col-sm-12 components-container" *ngFor="let c of chatArray;let last = last"
+                        [ngClass]="last?'mb-5':''">
+
+                        <app-user-query *ngIf="c.type==0" userMessage="{{c.request}}"></app-user-query>
+                        <app-thumbnail *ngIf="c.type==2" userFile="{{c.request}}"></app-thumbnail>
+                        <ng-container *ngIf="c.type==1">
+                            <ng-container [ngSwitch]="c.response.type">
+                                <ng-container *ngIf="!isGreeting(c.response)">
+                                    <app-icon-message *ngSwitchCase="'iconMessage'" [greeting]="false" [iconMessage]="c.response.value">
+                                    </app-icon-message>
+                                </ng-container>
+
+                                <div class="image-wrap neum-shadow" *ngSwitchCase="'image'">
+                                    <img [src]="c.response.value.imageUrl" width="100%" />
+                                </div>
+                                <app-image-reply *ngSwitchCase="'imageReply'" [imageReply]="c.response.value">
+                                </app-image-reply>
+                                <app-system-query *ngSwitchCase="'message'" systemMessage="{{c.response.text}}"
+                                    voiceMessage="{{c.response.speak?c.response.speak:''}}">
+                                </app-system-query>
+                                <app-plain-quick-reply *ngSwitchCase="'plainQuickReply'"
+                                    [quickReplys]="c.response.value.data"></app-plain-quick-reply>
+                                <app-icon-quick-reply *ngSwitchCase="'iconQuickReply'"
+                                    [quickReplys]="c.response.value.data"></app-icon-quick-reply>
+                                <app-carousel-item *ngSwitchCase="'carousal'" [corosalData]="c.response.value.data">
+                                </app-carousel-item>
+
+
+                                <app-paragraph-reply *ngSwitchCase="'paragraph'" [paragraph]="c.response.value.text">
+                                </app-paragraph-reply>
+
+                                <app-slider *ngSwitchCase="'slider'" [sliderData]="c.response.value">
+                                </app-slider>
+                                <app-number-slider *ngSwitchCase="'servey'" [surveyDetails]="c.response.value.data">
+                                </app-number-slider>
+                                <app-visual-reply *ngSwitchCase="'visualReply'" [visualReply]="c.response.value.data">
+                                </app-visual-reply>
+                                <app-listview *ngSwitchCase="'listView'" [listview]="c.response.value">
+                                </app-listview>
+                                <app-payment-card *ngSwitchCase="'paymentsCard'" [paymentMethod]="c.response.value">
+                                </app-payment-card>
+                                <app-form-card *ngSwitchCase="'formCard'" [formCard]="c.response.value">
+                                </app-form-card>
+                                <app-location-composite-card *ngSwitchCase="'compositeCard'"
+                                    [compositeCard]="c.response.value"></app-location-composite-card>
+                                <app-vote-card *ngSwitchCase="'voteCard'" [voteCard]="c.response.value"></app-vote-card>
+                                <app-property-detail-card *ngSwitchCase="'propertyViewCard'"
+                                    [propertyCard]="c.response.value"></app-property-detail-card>
+                                <app-login *ngSwitchCase="'loginCard'" (changeTheme)="switchTheme($event)"
+                                    [loginData]="c.response.value"></app-login>
+                                <app-select-category *ngSwitchCase="'listViewCard'" [listData]="c.response.value">
+                                </app-select-category>
+                                <app-feedback *ngSwitchCase="'feedbackCard'" [feedbackData]="c.response.value">
+                                </app-feedback>
+
+
+                                <app-ticket *ngIf="c.response.type=='ticketCard' && c.response.value.items.length==1"
+                                    [tickets]="c.response.value.items[0]">
+                                </app-ticket>
+                                <app-ticket-corosal *ngIf="c.response.type=='ticketCard' && c.response.value.items.length>1"
+                                    [carouselItems]="c.response.value.items"></app-ticket-corosal>
+
+                            </ng-container>
+                        </ng-container>
+                        <agent-message *ngIf="c.type==3" [agent]="c.response.value" [message]="c.response.text">
+                        </agent-message>
+                    </div>
+                    <div class="col-sm-12 typing-animation" *ngIf="showThreeDots">
+                        <div class="dot-pulse"></div>
+                    </div>
+                </div> -->
+        <div
+          class="row"
+          [hidden]="!(screen === 'home' && theme === 'dark')"
+          [@listAnimation]="homeChatArray.length"
+        >
+          <div
+            class="col-sm-12 components-container"
+            *ngFor="let c of homeChatArray; let last = last"
+            [ngClass]="last ? 'mb-5' : ''"
+          >
+            <app-user-query
+              *ngIf="c.type == 0"
+              userMessage="{{ c.request }}"
+            ></app-user-query>
+            <app-thumbnail
+              *ngIf="c.type == 2"
+              userFile="{{ c.request }}"
+            ></app-thumbnail>
+            <ng-container *ngIf="c.type == 1">
+              <ng-container [ngSwitch]="c.response.type">
+                <ng-container *ngIf="!isGreeting(c.response)">
+                  <app-icon-message
+                    *ngSwitchCase="'iconMessage'"
+                    [greeting]="false"
+                    [iconMessage]="c.response.value"
+                  >
+                  </app-icon-message>
+                </ng-container>
+
+                <div class="image-wrap neum-shadow" *ngSwitchCase="'image'">
+                  <img [src]="c.response.value.imageUrl" width="100%" />
+                </div>
+                <app-image-reply
+                  *ngSwitchCase="'imageReply'"
+                  [imageReply]="c.response.value"
+                >
+                </app-image-reply>
+                <app-system-query
+                  *ngSwitchCase="'message'"
+                  systemMessage="{{ c.response.text }}"
+                  voiceMessage="{{ c.response.speak ? c.response.speak : '' }}"
+                >
+              </app-system-query>
+                <app-system-query
+                  *ngSwitchCase="'greetingsCard'"
+                  systemMessage="{{ c.response.text }}"
+                  voiceMessage="{{ c.response.speak ? c.response.speak : '' }}"
+                  response = "{{c.response.type}}"
+                >
+                </app-system-query>
+                <app-plain-quick-reply
+                  *ngSwitchCase="'plainQuickReply'"
+                  [screen]="screen"
+                  [quickReplys]="c.response.value.data"
+                  [isMultipleSelect]="c.response.value.multiSelect"
+                ></app-plain-quick-reply>
+                <app-icon-quick-reply
+                  *ngSwitchCase="'iconQuickReply'"
+                  [quickReplys]="c.response.value.data"
+                  [screen]="screen"
+                ></app-icon-quick-reply>
+                <app-carousel-item
+                  *ngSwitchCase="'carousal'"
+                  [corosalData]="c.response.value.data"
+                >
+                </app-carousel-item>
+
+                <app-paragraph-reply
+                  *ngSwitchCase="'paragraph'"
+                  [paragraph]="c.response.value.text"
+                >
+                </app-paragraph-reply>
+
+                <app-slider
+                  *ngSwitchCase="'slider'"
+                  [sliderData]="c.response.value"
+                >
+                </app-slider>
+                <app-number-slider
+                  *ngSwitchCase="'servey'"
+                  [surveyDetails]="c.response.value.data"
+                >
+                </app-number-slider>
+                <app-visual-reply
+                  *ngSwitchCase="'visualReply'"
+                  [visualReply]="c.response.value.data"
+                >
+                </app-visual-reply>
+                <app-listview
+                  *ngSwitchCase="'listView'"
+                  [listview]="c.response.value"
+                >
+                </app-listview>
+                <app-payment-card
+                  *ngSwitchCase="'paymentsCard'"
+                  [paymentMethod]="c.response.value"
+                >
+                </app-payment-card>
+                <app-form-card
+                  *ngSwitchCase="'formCard'"
+                  [formCard]="c.response.value"
+                >
+                </app-form-card>
+                <app-location-composite-card
+                  *ngSwitchCase="'compositeCard'"
+                  [compositeCard]="c.response.value"
+                ></app-location-composite-card>
+                <app-vote-card
+                  *ngSwitchCase="'voteCard'"
+                  [voteCard]="c.response.value"
+                ></app-vote-card>
+                <app-property-detail-card
+                  *ngSwitchCase="'propertyViewCard'"
+                  [propertyCard]="c.response.value"
+                ></app-property-detail-card>
+                <app-login
+                  *ngSwitchCase="'loginCard'"
+                  (changeTheme)="switchTheme($event)"
+                  [loginData]="c.response.value"
+                ></app-login>
+                <app-select-category
+                  *ngSwitchCase="'listViewCard'"
+                  [listData]="c.response.value"
+                >
+                </app-select-category>
+                <app-feedback
+                  *ngSwitchCase="'feedbackCard'"
+                  [feedbackData]="c.response.value"
+                >
+                </app-feedback>
+
+                <app-ticket
+                  *ngIf="
+                    c.response.type == 'ticketCard' &&
+                    c.response.value.items.length == 1
+                  "
+                  [tickets]="c.response.value.items[0]"
+                >
+                </app-ticket>
+                <app-ticket-corosal
+                  *ngIf="
+                    c.response.type == 'ticketCard' &&
+                    c.response.value.items.length > 1
+                  "
+                  [carouselItems]="c.response.value.items"
+                ></app-ticket-corosal>
+              </ng-container>
+            </ng-container>
+            <agent-message
+              *ngIf="c.type == 3"
+              [agent]="c.response.value"
+              [message]="c.response.text"
+            >
+            </agent-message>
+          </div>
+          <div class="col-sm-12 typing-animation" *ngIf="showThreeDots">
+            <div class="dot-pulse"></div>
+          </div>
+        </div>
+        <div
+          class="row"
+          [hidden]="
+            !(screen === 'home' && (theme === 'light' || this.theme === ''))
+          "
+          [@listAnimation]="authHomeChatArray.length"
+        >
+          <div
+            class="col-sm-12 components-container"
+            *ngFor="let c of authHomeChatArray; let last = last"
+            [ngClass]="last ? 'mb-5' : ''"
+          >
+            <app-user-query
+              *ngIf="c.type == 0"
+              userMessage="{{ c.request }}"
+            ></app-user-query>
+            <app-thumbnail
+              *ngIf="c.type == 2"
+              userFile="{{ c.request }}"
+            ></app-thumbnail>
+            <ng-container *ngIf="c.type == 1">
+              <ng-container [ngSwitch]="c.response.type">
+                <ng-container *ngIf="!isGreeting(c.response)">
+                  <app-icon-message
+                    *ngSwitchCase="'iconMessage'"
+                    [greeting]="false"
+                    [iconMessage]="c.response.value"
+                  >
+                  </app-icon-message>
+                </ng-container>
+
+                <div class="image-wrap neum-shadow" *ngSwitchCase="'image'">
+                  <img [src]="c.response.value.imageUrl" width="100%" />
+                </div>
+                <app-image-reply
+                  *ngSwitchCase="'imageReply'"
+                  [imageReply]="c.response.value"
+                >
+                </app-image-reply>
+                <app-system-query
+                  *ngSwitchCase="'message'"
+                  systemMessage="{{ c.response.text }}"
+                  voiceMessage="{{ c.response.speak ? c.response.speak : '' }}"
+                >
+              </app-system-query>
+                <app-system-query
+                  *ngSwitchCase="'greetingsCard'"
+                  systemMessage="{{ c.response.text }}"
+                  voiceMessage="{{ c.response.speak ? c.response.speak : '' }}"
+                  response = "{{c.response.type}}"
+                >
+                </app-system-query>
+                <app-plain-quick-reply
+                  *ngSwitchCase="'plainQuickReply'"
+                  [screen]="screen"
+                  [quickReplys]="c.response.value.data"
+                  [isMultipleSelect]="c.response.value.multiSelect"
+                ></app-plain-quick-reply>
+                <app-icon-quick-reply
+                  *ngSwitchCase="'iconQuickReply'"
+                  [screen]="screen"
+                  [quickReplys]="c.response.value.data"
+                ></app-icon-quick-reply>
+                <app-carousel-item
+                  *ngSwitchCase="'carousal'"
+                  [corosalData]="c.response.value.data"
+                >
+                </app-carousel-item>
+
+                <app-paragraph-reply
+                  *ngSwitchCase="'paragraph'"
+                  [paragraph]="c.response.value.text"
+                >
+                </app-paragraph-reply>
+
+                <app-slider
+                  *ngSwitchCase="'slider'"
+                  [sliderData]="c.response.value"
+                >
+                </app-slider>
+                <app-number-slider
+                  *ngSwitchCase="'servey'"
+                  [surveyDetails]="c.response.value.data"
+                >
+                </app-number-slider>
+                <app-visual-reply
+                  *ngSwitchCase="'visualReply'"
+                  [visualReply]="c.response.value.data"
+                >
+                </app-visual-reply>
+                <app-listview
+                  *ngSwitchCase="'listView'"
+                  [listview]="c.response.value"
+                >
+                </app-listview>
+                <app-payment-card
+                  *ngSwitchCase="'paymentsCard'"
+                  [paymentMethod]="c.response.value"
+                >
+                </app-payment-card>
+                <app-form-card
+                  *ngSwitchCase="'formCard'"
+                  [formCard]="c.response.value"
+                >
+                </app-form-card>
+                <app-location-composite-card
+                  *ngSwitchCase="'compositeCard'"
+                  [compositeCard]="c.response.value"
+                ></app-location-composite-card>
+                <app-vote-card
+                  *ngSwitchCase="'voteCard'"
+                  [voteCard]="c.response.value"
+                ></app-vote-card>
+                <app-property-detail-card
+                  *ngSwitchCase="'propertyViewCard'"
+                  [propertyCard]="c.response.value"
+                ></app-property-detail-card>
+                <app-login
+                  *ngSwitchCase="'loginCard'"
+                  (changeTheme)="switchTheme($event)"
+                  [loginData]="c.response.value"
+                ></app-login>
+                <app-select-category
+                  *ngSwitchCase="'listViewCard'"
+                  [listData]="c.response.value"
+                >
+                </app-select-category>
+                <app-feedback
+                  *ngSwitchCase="'feedbackCard'"
+                  [feedbackData]="c.response.value"
+                >
+                </app-feedback>
+
+                <app-ticket
+                  *ngIf="
+                    c.response.type == 'ticketCard' &&
+                    c.response.value.items.length == 1
+                  "
+                  [tickets]="c.response.value.items[0]"
+                >
+                </app-ticket>
+                <app-ticket-corosal
+                  *ngIf="
+                    c.response.type == 'ticketCard' &&
+                    c.response.value.items.length > 1
+                  "
+                  [carouselItems]="c.response.value.items"
+                ></app-ticket-corosal>
+              </ng-container>
+            </ng-container>
+            <agent-message
+              *ngIf="c.type == 3"
+              [agent]="c.response.value"
+              [message]="c.response.text"
+            >
+            </agent-message>
+          </div>
+          <div class="col-sm-12 typing-animation" *ngIf="showThreeDots">
+            <div class="dot-pulse"></div>
+          </div>
+        </div>
+        <div
+          class="row"
+          [hidden]="!(screen === 'chat')"
+          [@listAnimation]="convChatArray.length"
+        >
+          <div
+            class="col-sm-12 components-container"
+            *ngFor="let c of convChatArray; let last = last"
+            [ngClass]="last ? 'mb-5' : ''"
+          >
+            <app-user-query
+              *ngIf="c.type == 0"
+              userMessage="{{ c.request }}"
+            ></app-user-query>
+            <app-thumbnail
+              *ngIf="c.type == 2"
+              userFile="{{ c.request }}"
+            ></app-thumbnail>
+            <ng-container *ngIf="c.type == 1">
+              <ng-container [ngSwitch]="c.response.type">
+                <ng-container *ngIf="!isGreeting(c.response)">
+                  <app-icon-message
+                    *ngSwitchCase="'iconMessage'"
+                    [iconMessage]="c.response.value"
+                  >
+                  </app-icon-message>
+                </ng-container>
+
+                <div class="image-wrap neum-shadow" *ngSwitchCase="'image'">
+                  <img [src]="c.response.value.imageUrl" width="100%" />
+                </div>
+                <app-image-reply
+                  *ngSwitchCase="'imageReply'"
+                  [imageReply]="c.response.value"
+                >
+                </app-image-reply>
+                <app-system-query
+                  *ngSwitchCase="'message'"
+                  systemMessage="{{ c.response.text }}"
+                  voiceMessage="{{ c.response.speak ? c.response.speak : '' }}"
+                >
+                </app-system-query>
+                <app-system-query
+                  *ngSwitchCase="'greetingsCard'"
+                  systemMessage="{{ c.response.text }}"
+                  voiceMessage="{{ c.response.speak ? c.response.speak : '' }}"
+                  response = "{{c.response.type}}"
+                >
+                </app-system-query>
+                <app-plain-quick-reply
+                  *ngSwitchCase="'plainQuickReply'"
+                  [quickReplys]="c.response.value.data"
+                  [isMultipleSelect]="c.response.value.multiSelect"
+                ></app-plain-quick-reply>
+                <app-icon-quick-reply
+                  *ngSwitchCase="'iconQuickReply'"
+                  [quickReplys]="c.response.value.data"
+                ></app-icon-quick-reply>
+                <app-carousel-item
+                  *ngSwitchCase="'carousal'"
+                  [corosalData]="c.response.value.data"
+                >
+                </app-carousel-item>
+
+                <app-paragraph-reply
+                  *ngSwitchCase="'paragraph'"
+                  [paragraph]="c.response.value.text"
+                >
+                </app-paragraph-reply>
+
+                <app-slider
+                  *ngSwitchCase="'slider'"
+                  [sliderData]="c.response.value"
+                >
+                </app-slider>
+                <app-number-slider
+                  *ngSwitchCase="'servey'"
+                  [surveyDetails]="c.response.value.data"
+                >
+                </app-number-slider>
+                <app-visual-reply
+                  *ngSwitchCase="'visualReply'"
+                  [visualReply]="c.response.value.data"
+                >
+                </app-visual-reply>
+                <app-listview
+                  *ngSwitchCase="'listView'"
+                  [listview]="c.response.value"
+                >
+                </app-listview>
+                <app-payment-card
+                  *ngSwitchCase="'paymentsCard'"
+                  [paymentMethod]="c.response.value"
+                >
+                </app-payment-card>
+                <app-form-card
+                  *ngSwitchCase="'formCard'"
+                  [formCard]="c.response.value"
+                >
+                </app-form-card>
+                <app-location-composite-card
+                  *ngSwitchCase="'compositeCard'"
+                  [compositeCard]="c.response.value"
+                ></app-location-composite-card>
+                <app-vote-card
+                  *ngSwitchCase="'voteCard'"
+                  [voteCard]="c.response.value"
+                ></app-vote-card>
+                <app-property-detail-card
+                  *ngSwitchCase="'propertyViewCard'"
+                  [propertyCard]="c.response.value"
+                ></app-property-detail-card>
+                <app-login
+                  *ngSwitchCase="'loginCard'"
+                  (changeTheme)="switchTheme($event)"
+                  [loginData]="c.response.value"
+                ></app-login>
+                <app-select-category
+                  *ngSwitchCase="'listViewCard'"
+                  [listData]="c.response.value"
+                >
+                </app-select-category>
+                <app-feedback
+                  *ngSwitchCase="'feedbackCard'"
+                  [feedbackData]="c.response.value"
+                >
+                </app-feedback>
+
+                <app-ticket
+                  *ngIf="
+                    c.response.type == 'ticketCard' &&
+                    c.response.value.items.length == 1
+                  "
+                  [tickets]="c.response.value.items[0]"
+                >
+                </app-ticket>
+                <app-ticket-corosal
+                  *ngIf="
+                    c.response.type == 'ticketCard' &&
+                    c.response.value.items.length > 1
+                  "
+                  [carouselItems]="c.response.value.items"
+                ></app-ticket-corosal>
+              </ng-container>
+            </ng-container>
+            <agent-message
+              *ngIf="c.type == 3"
+              [agent]="c.response.value"
+              [message]="c.response.text"
+            >
+            </agent-message>
+          </div>
+          <div class="col-sm-12 typing-animation" *ngIf="showThreeDots">
+            <div class="dot-pulse"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="frame-footer neum-shadow" #framefooter>
+      <div class="col-md-12 p-0" *ngFor="let c of chatArray">
+        <div
+          class="col-sm-12 p-0"
+          *ngIf="c.type == 1 && c.response.type == 'roundedQuickReply'"
+        >
+          <app-round-quick-reply
+            *ngIf="c.response.type == 'roundedQuickReply'"
+            [quickReplys]="c.response.value.data"
+          ></app-round-quick-reply>
+        </div>
+      </div>
+      <div *ngIf="!showInput">
+        <app-typo-button></app-typo-button>
+      </div>
+      <div *ngIf="showInput">
+        <app-input-field
+          [conversationToken]="conversationToken"
+          [showAttachmentButton]="showAttachmentButton"
+          [orange]="orange"
+          [mode]="mode"
+        ></app-input-field>
+      </div>
+    </div>
+  </div>
+  <div class="text-center footer">
+    <a href="http://www.polynomial.ai/" target="_blank" title="Polynomial.ai">
+      Powered by Polynomial.AI <img src="https://www.polynomial.ai/assets/favicon.svg" alt="" /></a>
+  </div>
+</div>

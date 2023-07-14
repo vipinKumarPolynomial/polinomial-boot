@@ -1,0 +1,36 @@
+.thumbnail-wrap{
+    padding: 8px;
+    max-width:200px;
+    border-radius: 5px;
+    font-size: 14px;
+    color:#fff;
+    .details{
+        padding: 10px 10px 0px 15px;
+        .fa{
+            font-size: 18px;
+            padding-right: 10px;
+        }
+    
+    ul{
+        padding:0px;
+        margin: 0px;
+        font-size:10px;
+        li {
+            list-style-type: none; 
+         }
+    }
+}
+.flex-1{
+    flex:1;
+}
+.text-ellipsis{
+    text-overflow:ellipsis;
+}
+.word-break-all{
+    word-break: break-all;
+}
+iframe{
+    background: #fff;
+    border: none;
+}
+}

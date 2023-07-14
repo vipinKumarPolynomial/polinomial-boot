@@ -1,0 +1,34 @@
+<div class="row fullHeight_VH fullWidth_vw display-flex p-0 m-0">
+  <div class="container animate__animated animate__fadeInRightBig">
+    <div class="row h-100 " style="padding: 1.6rem 2rem;">
+       <div class="col-12 text-center">
+        <div class="display-flex mb-2">
+          <div class="logoDiv">
+            <img [src]="brandDetails?.icon" alt="logo" class="w-100 h-100"/>
+          </div>
+        </div>
+        <div><p>{{brandDetails?.title}}</p></div>
+      </div>
+      <div class="col-md-12 text-center display-flex">
+        <p class="fw-500 m-0">Verification successfull</p>
+      </div>
+      <div class="col-12 text-center d-flex justify-content-center  align-items-end">
+        <div>
+          <div class="display-flex mb-2">
+            <div class="dp display-flex">
+              <img src="" alt="">
+            </div>
+          </div>
+          <div>
+            <span class="note fs-14">
+              Welcome back Andrew
+            </span>
+          </div>
+          <div>
+            <span class="note fs-14" >{{userPosition.from == 'login'? 'Let us continue':'You are successfully registered with us.'}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

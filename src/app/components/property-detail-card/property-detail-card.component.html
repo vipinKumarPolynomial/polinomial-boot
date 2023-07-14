@@ -1,0 +1,55 @@
+<div class="pr-dt-crd neum-shadow">
+  <div class="image_wrapper">
+    <ngx-slick-carousel class="carousel pt-3" #slickModal="slick-carousel" [config]="slideConfig">
+      <div ngxSlickItem class="single-image" *ngFor="let item of propertyCard.propertyImageUrls; let i = index">
+        <img [src]=item (click)="open(content)" />
+      </div>
+    </ngx-slick-carousel>
+  </div>
+  <div class="content">
+    <h4>{{propertyCard.propertyName}}</h4>
+    <p>
+      {{propertyCard.propertyDescription}}
+    </p>
+    <div class="text-center">
+      <ul class="d-flex ppt-btn-ul">
+        <li>
+          <button class="neum-shadow btn-custom" [ngClass]="{'tab-active':locationTabOpen}"
+            (click)="changeLocationTab(true)">Location</button>
+        </li>
+        <li>
+          <button class="neum-shadow btn-custom" [ngClass]="{'tab-active':!locationTabOpen}"
+            (click)="changeLocationTab(false)">House Features</button>
+        </li>
+      </ul>
+    </div>
+    <div class="location_tab" *ngIf="locationTabOpen">
+      <p *ngFor="let locItem of propertyCard.locationDescription">
+        <img [src]=locItem.iconUrl />{{locItem.address}}
+      </p>
+    </div>
+    <div class="home_feature" *ngIf="!locationTabOpen">
+      <div class="main_row" *ngFor="let val of propertyCard.houseFeatures">
+        <h4>{{val.featureTitle}}</h4>
+        <div class="home_tab_row">
+          <div class="home_tab_col" *ngFor="let colVal of val.description">
+            <h5>{{colVal.title}}</h5>
+            <p *ngFor="let secVal of colVal.value">{{secVal}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #content let-modal>
+  <div class="modal-body">
+    <button type="button" class="close pp-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    <div class="image_wrapper">
+      <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfigPP">
+        <div ngxSlickItem class="single-image" *ngFor="let item of propertyCard.propertyImageUrls; let i = index">
+          <img [src]=item (click)="open(content)" />
+        </div>
+      </ngx-slick-carousel>
+    </div>
+  </div>
+</ng-template>

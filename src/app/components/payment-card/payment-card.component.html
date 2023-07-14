@@ -1,0 +1,68 @@
+<div class="payment-card-wrapper neum-shadow">
+    <div class="payment-card neum-shadow">
+    <h4>Payment Page</h4>
+    <p><span *ngFor="let item of paymentMethod.subTitle">{{item}}</span></p>
+    <ul class="d-flex action flex-wrap">
+        <li class="neum-shadow" [ngClass]="paymentMethod.payments.mode=='Reservation'?'active':''">
+            Reservation
+        </li>
+        <li class="neum-shadow" [ngClass]="paymentMethod.payments.mode=='Deposit'?'active':''">
+            Deposit
+        </li>
+        <li class="neum-shadow" [ngClass]="paymentMethod.payments.mode=='Pro-rated Rent'?'active':''">
+            Pro-rated Rent
+        </li>
+    </ul>
+    <ul class="d-flex flex-wrap amount-wrap">
+        <li>
+            <h4>Amount</h4>
+        </li>
+        <li>
+            <h4>{{paymentMethod.payments.currencyType}} {{paymentMethod.payments.amount}}</h4>
+        </li>
+    </ul>
+</div>
+<div class="additional-wrap neum-shadow">
+    <div *ngFor="let field of paymentMethod.additionalFields" class="d-flex flex-wrap additional-field">
+        <h5>{{field.inputTitle}}</h5>
+        <div class="txt-wrap">
+            <input type="text" />
+            <button>Apply</button>
+        </div>
+    </div>
+</div>
+<div class="payment-card neum-shadow">
+    <ul class="d-flex flex-wrap amount-wrap">
+        <li>
+            <h4>Total</h4>
+        </li>
+        <li>
+            <h4>INR 2000</h4>
+        </li>
+    </ul>
+    <img src="assets/barcode.png" />
+    <ul class="d-flex action flex-wrap margTP20">
+        <li class="neum-shadow" *ngFor="let mode of paymentMethod.paymentModes">
+            {{mode.method}}
+        </li>
+    </ul>
+    <div *ngFor="let mode of paymentMethod.paymentModes" class="card-details">
+        <div *ngFor="let detail of mode.details" class="">
+            <label>{{detail.inputTitle}}</label>
+            <input type="{{detail.inputType}}" />
+        </div>
+        <!-- <div class="d-flex  ">
+            <div class="date">
+                <label>Valid Upto</label>
+                <input type="text" value="" />
+            </div>
+            <div class="cvv">
+                <label>CVV</label>
+                <input type="text" value="" />
+            </div>
+        </div> -->
+        <!-- <label>Card Holder</label>
+        <input type="text" /> -->
+    </div>
+</div>
+</div>

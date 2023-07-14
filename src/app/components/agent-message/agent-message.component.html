@@ -1,0 +1,25 @@
+<p *ngIf="!attachments">
+    <span class="agent-dp">{{ agent.name?agent.name.charAt(0):"A" }}</span>
+    <span class="rounded-rectangle btn-white shadow agent-message neum-shadow">
+        <span>{{message}}</span>
+    </span>
+    <span class="agent-name">{{ agent.name?agent.name:"Agent" }}</span>
+</p>
+<div class="thumbnail neum-shadow" *ngIf="attachments" (click)="downloadFile(attachments[0].contentUrl)">
+    <div class="thumbnail-header">{{message}}</div>
+    <div class="thumbnail-body">
+        <div class="overlay">
+            <div class="circle">
+                <i class="fa fa-download"></i>
+            </div>
+        </div>
+        <img *ngIf="attachments[0].contentType==='image/jpeg' || attachments[0].contentType==='image/png'"
+            [src]="attachments[0].contentUrl" [alt]="attachments[0].name">
+        <span *ngIf="attachments[0].contentType!=='image/jpeg' && attachments[0].contentType!=='image/png'">
+            {{attachments[0].contentType}}
+        </span>
+    </div>
+    <div class="thumbnail-footer">
+        {{attachments[0].name}}
+    </div>
+</div>

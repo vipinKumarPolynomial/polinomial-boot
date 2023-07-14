@@ -1,0 +1,46 @@
+$background: #1d203c;
+$breakpoint-mobile: 600px;
+p {
+    text-align: center;
+    color: #fff;
+}
+.reply-row {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.reply-box {
+
+    padding: 10px;
+    font-weight: 500;
+    margin: 5px 5px;
+    border-radius: 10px;
+    background: #1d203c;
+    text-align: center;
+    max-width: calc(33vw - 27px);
+    @media (min-width: $breakpoint-mobile) {
+        max-width: 100px;
+    }
+    flex: 0 0 31%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    img {
+        max-width: 100%;
+        padding-bottom: 10px;
+    }
+    p {
+        margin-bottom: 0;
+        font-size: 3vw;
+    @media (min-width: $breakpoint-mobile) {
+        font-size: 15px;
+    }
+        line-height: 15px;
+    }
+    object{
+        width:100%;
+    }
+    path{
+        fill:#F2006C!important;
+    }
+}

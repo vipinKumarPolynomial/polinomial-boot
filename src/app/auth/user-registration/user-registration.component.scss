@@ -1,0 +1,28 @@
+.container {
+  height: auto;
+  width: 26rem;
+  box-shadow: 12px 12px 20px -12px rgba(0, 0, 0, 0.35);
+  border: 1px solid #c7c7c7;
+  border-radius: 12px;
+}
+.cardInput {
+  width: 100%;
+  /* margin: 12px; */
+  margin: 14px 0px 14px 0px;
+  border: 1px solid #afaeaf;
+  border-radius: 6px;
+  padding: 7px;
+  font-size: 13px;
+  color: #afaeaf;
+}
+.dp {
+ height: 3.5rem;
+    width: 3.5rem;
+    background: #EDEDED;
+    border-radius: 50%;
+    border: 1px solid #848484;
+}
+
+.note-height{
+  line-height: 14px;
+}

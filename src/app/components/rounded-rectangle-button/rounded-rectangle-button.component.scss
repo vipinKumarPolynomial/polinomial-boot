@@ -1,0 +1,23 @@
+.rounded-rectangle {
+  border-radius: 8px;
+  border-width: 0px;
+  outline: none;
+  margin-bottom: 12px;
+  padding: 8px 16px;
+  height: auto;
+  font-size: 12px;
+  line-height: 1.5em;
+}
+
+.btn-custom {
+  background-color: #262938;
+  color:white;
+}
+
+.btn-white {
+  background-color:white;
+  color:#262938;
+}
+.shadow {
+  box-shadow: 0px 0px 12px 0px #101010 !important;
+}

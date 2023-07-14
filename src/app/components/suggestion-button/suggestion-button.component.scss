@@ -1,0 +1,36 @@
+$dark: #1d203c;
+.rounded {
+    border-radius: 5px!important;
+    padding: 4px 12px;
+    outline: none;
+    border-width: 0px;
+    margin-bottom: 8px;
+    background: #2d3142;
+    font-size: 14px;
+    margin: 8px;
+}
+
+.btn-custom {
+    background-color: $dark;
+    color:white;
+}
+
+.btn-white {
+    background-color:white;
+    color:#262938;
+}
+.btn-selected{
+    background-color: #E63756;
+    color:#fff
+}
+
+.flex-btn{
+    display: flex;
+    align-items: center;
+}
+
+button img{
+    padding-right: 0px;
+    margin: 8px;
+    height: 18px ;
+}

@@ -1,0 +1,43 @@
+.slider-box {
+  width: 100%;
+  height: auto;
+  padding: 20px 15px;
+  background-color:/*rgb(29, 32, 60)*/#1d203c; /* given  RGB and # colour are same. RGB is CSS colour representation.*/
+  text-align: center;
+  border-radius: 5px;
+  h4 {
+    margin: 0;
+    margin-bottom: 20px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+}
+
+.rounded {
+  border-radius: 4px !important;
+  padding: 8px 16px;
+  outline: none;
+  line-height: 2em;
+  border-width: 0px;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 12px;
+  display: table;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+
+.btn-custom {
+  background-color:#1d203c/* #262938*/;
+  color: white;
+}
+
+.btn-white {
+  background-color: white;
+  color: #262938;
+}
+.shadow {
+  box-shadow: 0px 2px 8px -2px #000000 !important;
+}

@@ -1,0 +1,7 @@
+<div class="content-area neum-shadow ticket pb-1 p-4 text-center small-box">
+    <h5 class="text-white font-400">{{ feedbackData.title }}</h5>
+    <div class="Star-element pt-3 pb-3">
+  <span class="fa fa-star" *ngFor="let star of stars;let i = index" [ngClass]="{'checked':star.checked,'pointer-events-none':disabled}" (click)="addRemoveRating(i)"></span>
+    </div> 
+    <button *ngIf="!disabled" class="text-uppercase rounded btn-custom neum-shadow hover-effect" (click)="sendResponse()"style="background-color:#1d203c">Submit</button>
+  </div>

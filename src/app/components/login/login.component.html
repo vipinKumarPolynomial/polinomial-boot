@@ -1,0 +1,23 @@
+
+<div class="content-area neum-shadow ticket pb-1 p-4 text-center small-box">
+  <h6 class="text-white font-400 ">{{ loginData.title }}</h6>
+
+  <form action="" class="form-element">
+    <div class="form-group">
+      <input type="text" value="" autocomplete="off" [disabled]="disabled" class="form-input mb-2 mt-3" name="otpInput" [(ngModel)]="otpInput" />
+      <p *ngIf="loginData.resendAction.state" class="text-white">Didn't receive the code? <a href="#" [ngClass]="{'pointer-events-none':disabled}" (click)="resend()"
+          class="text-dark-pink text-uppercase font-600">Resend</a></p>
+      <p *ngIf="wrongOTP" class="error">OTP entered is incorrect</p>
+      <p *ngIf="showResendMessage" class="error">New OTP generated</p>
+      
+    </div>
+    <div class="d-flex justify-content-center">
+      <ng-container *ngIf="!disabled">
+        <button *ngFor="let action of loginData.action" [ngClass]="{'pointer-events-none':disabled}"
+          class="text-uppercase rounded btn-custom neum-shadow hover-effect"
+          (click)="onButtonClick(action.value.data)">{{ action.title }}</button>
+      </ng-container>
+
+    </div>
+  </form>
+</div>

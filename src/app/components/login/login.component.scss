@@ -1,0 +1,37 @@
+$font-weight:("light":300,"normal":400,"medium":500,"bold":700 );
+$dark:#1d203c;
+
+
+.small-box{
+    max-width: 490px;
+    margin: 0px auto;
+}
+.font-300{
+    font-weight: map-get($font-weight , "light" );
+}
+.font-600{
+    font-weight: 600;
+}
+.form-input{
+    width:100%;
+    padding:10px;
+}
+.text-dark-pink{
+color:#e63756;
+}
+.btn-custom{
+    background-color: $dark;
+    color: white;
+}
+.rounded{
+    border-radius: 4px !important;
+    padding: 8px 16px;
+    outline: none;
+    line-height: 2em;
+    border-width: 0px;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 12px;
+    display: table;
+    margin: 0 auto;
+}

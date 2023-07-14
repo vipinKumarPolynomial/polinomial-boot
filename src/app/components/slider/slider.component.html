@@ -1,0 +1,6 @@
+<div class="slider-box neum-shadow" *ngIf="carousalStatus">
+    <h4>{{sliderData.sliderTitle}}</h4>
+    <app-range-slider [sliderMaxRange]="sliderData.sliderMaxRange" [sliderMinRange]="sliderData.sliderMinRange" [sliderRangeData]="sliderData.data"></app-range-slider>
+    <button class="rounded btn-custom neum-shadow" (click)="onButtonClick()">SUBMIT</button>
+</div>
+<!-- hover-effect-->

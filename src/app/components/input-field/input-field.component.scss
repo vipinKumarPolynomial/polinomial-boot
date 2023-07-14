@@ -1,0 +1,144 @@
+$dark:#1d203c;
+$darker:#15172b;
+.form-control{
+  background-color: $dark;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  color: white;
+  border-color: $darker;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  box-shadow: 0 2px 5px 0 $darker;
+
+}
+.input-group-append{
+  margin-right: 15px;
+}
+.input-group-text{
+  font-size: 1.4em;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  color:#fff;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: $dark;
+  border-color: $darker;
+  box-shadow: 0 2px 5px 0 $darker;
+
+  img {
+    height: 20px;
+  }
+}
+
+.box.input-group-text{
+  border-left: 1px solid rgb(222 222 222 / 28%);
+  z-index:9;
+}
+
+.inputfile + label {
+  max-width: 100%;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  padding: 0;
+  margin-bottom: 0;
+  font-size:0px; 
+  
+}
+
+
+// .box .inputfile + label {^M
+//     display: none;^M
+// }^M
+
+.box label,.box label figure{
+  margin-bottom: 0px;
+}
+
+.inputfile:focus + label,
+.inputfile.has-focus + label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+.inputfile + label svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;   
+    margin-right: 0.25em;
+   
+}
+
+.box .inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+.inputfile-5 + label svg {
+  width: 100%;
+  height: 100%;
+  fill: rgba(241 229 230 / 54%);
+}
+
+.input-group-text{
+  .fa:not(.no-hover):hover{
+    color:#e63756!important;
+  }
+}
+
+.attachment-popup-container
+{
+  z-index: 1;
+  *:focus {
+    outline: none;
+}
+  h6{
+    font-weight: 200;
+    font-size: 50%;
+  }
+  top: -129px;
+  /*left: -100px;*/
+  width: 250px;
+  height: 120px;
+  margin-right: 45px;
+  right:0px;
+  background: #1d203c;
+  padding: 10px;
+.buttons-container{
+  margin-left: 20px;
+    button.circular{
+      border: 1px solid #1d203c;
+      margin-right: 30px;
+      background: #1d203c;
+      border-radius: 50%;
+      padding: 8px;
+      width: 70px;
+      height: 70px;
+      .fa{
+        color:#fff;
+        font-size: 35px;
+        font-weight: 100;
+      }
+    }
+    button:hover{
+      background-color:#e63756;
+
+      .fa:hover{
+        color:#fff!important;
+      }
+
+    }
+  }
+}
+.fa-close{
+  top: 0px;
+  right: 5px;
+  }

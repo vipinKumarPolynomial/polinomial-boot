@@ -1,0 +1,17 @@
+$background: #1d203c;
+$foreground: #fff;
+
+.rounded {
+border-radius: 20px!important;
+padding: 4px 12px;
+outline: none;
+line-height: 2em;
+border-width: 0px;
+font-size: 14px;
+font-weight: 400;
+margin: 2px 12px;
+background-color:$background;
+color:$foreground;
+white-space: nowrap;
+}
+

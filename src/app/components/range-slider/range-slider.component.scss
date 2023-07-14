@@ -1,0 +1,47 @@
+::ng-deep {
+    .custom-slider .ngx-slider .ngx-slider-bar {
+        background: #fff;
+        height: 8px;
+        border-radius: 20px;
+    }
+
+    .custom-slider .ngx-slider .ngx-slider-pointer {
+        width: 24px;
+        height: 24px;
+        top: auto; /* to remove the default positioning */
+        background-size: cover;
+        background-color: #e63756;
+        top: 50%;
+        margin-top: -12px;
+        outline: none   ;
+        //box-shadow: 3px 3px 5px 6px #ccc;
+    }
+
+    .custom-slider .ngx-slider .ngx-slider-pointer:after {
+        display: none;
+    }
+
+    .custom-slider .ngx-slider .ngx-slider-bubble {
+        bottom: 14px;
+        color: white;
+    }
+
+    .custom-slider .ngx-slider .ngx-slider-limit {
+        // font-weight: bold;
+        color: blue;
+    }
+
+    .custom-slider .ngx-slider .ngx-slider-tick {
+        width: 5px;
+        height: 10px;
+        margin-left: 4px;
+        border-radius: 0;
+        background: #001324;
+        top: -1px;
+    }
+
+    .ngx-slider .ngx-slider-bubble .ngx-slider-limit {
+        color: white !important;
+    }
+}
+

@@ -1,0 +1,89 @@
+<div class="input-group mb-1 ml-1">
+  <div class="blob" *ngIf="voiceAnimation"></div>
+  <div class="incompatible" *ngIf="showMsg == 0 && !orange">
+    <i class="fa fa-close" (click)="close()" aria-hidden="true"></i>
+    {{ incompatibleMsg }}
+  </div>
+  <input
+    type="text"
+    class="form-control dark-input"
+    autocomplete="off"
+    placeholder="Type here.."
+    aria-label="Username"
+    aria-describedby="basic-addon1"
+    name="msg"
+    (ngModelChange)="attachment = false"
+    [(ngModel)]="msg"
+    (keyup)="keyupHandler()"
+    (keyup.enter)="messageCall()"
+    (keyup.escape)="revertInput()"
+  />
+  <div class="input-group-append">
+    <div>
+      <span class="input-group-text position-relative cursor-pointer pl-0">
+        <i
+          class="fa fa-paper-plane-o ml-3"
+          aria-hidden="true"
+          (click)="messageCall()"
+        ></i>
+        <i
+          class="fa fa-paperclip ml-3"
+          aria-hidden="true"
+          *ngIf="showAttachmentButton"
+          (click)="toggleAttachment()"
+        ></i>
+        <i
+          class="fa fa-microphone ml-3"
+          aria-hidden="true"
+          *ngIf="!orange"
+          (click)="listen()"
+          [ngClass]="{ 'mic-active': voiceAnimation, 'no-hover': mobile }"
+          [attr.disabled]="voiceAnimation"
+        ></i>
+        <div
+          class="attachment-popup-container position-absolute neum-shadow"
+          *ngIf="attachment"
+        >
+          <i
+            class="fa fa-close position-absolute"
+            (click)="attachment = false"
+          ></i>
+
+          <h6>Upload the images or document</h6>
+          <div class="buttons-container">
+            <button
+              class="neum-shadow circular"
+              title="Upload jpg,png"
+              (click)="uploadImage.click()"
+            >
+              <i class="fa fa-image"></i>
+              <input
+                type="file"
+                class="hide-input"
+                (change)="selectFile($event)"
+                #uploadImage
+                accept="image/png,image/jpg,image/jpeg"
+                name="uploadImage"
+              />
+            </button>
+            <button
+              class="neum-shadow circular"
+              title="Upload doc,pdf"
+              (click)="uploadFile.click()"
+            >
+              <i class="fa fa-file"></i>
+              <input
+                type="file"
+                class="hide-input"
+                (change)="selectFile($event)"
+                #uploadFile
+                accept=".doc,.docx, application/doc, application/docx, application/pdf"
+                name="uploadFile"
+              />
+            </button>
+          </div>
+        </div>
+      </span>
+    </div>
+  </div>
+</div>

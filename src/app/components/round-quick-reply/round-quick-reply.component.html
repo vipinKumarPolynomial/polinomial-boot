@@ -1,0 +1,38 @@
+<ngx-slick-carousel
+  class="carousel"
+  #slickModal="slick-carousel"
+  [config]="slideConfig"
+  *ngIf="roundQuickReplyBtn && quickReplys.lngth > 2"
+>
+  <div
+    ngxSlickItem
+    class="ngx-item slide"
+    *ngFor="let b of quickReplys; let i = index"
+  >
+    <app-rounded-button
+      suggestionButtonData="{{ b.text }}"
+      suggestionButtonValue="{{ b.value }}"
+      (hideButtonStatus)="buttonStatus($event)"
+    ></app-rounded-button>
+  </div>
+</ngx-slick-carousel>
+
+<!-- <ul class="d-flex btn-left flex-nowrap m-0" style="overflow: overlay;" *ngIf="roundQuickReplyBtn && quickReplys.length > 2">
+  <li *ngFor="let b of quickReplys">
+      <app-rounded-button suggestionButtonData="{{b.text}}" suggestionButtonValue="{{b.value}}" (hideButtonStatus)="buttonStatus($event)"></app-rounded-button>
+  </li>
+</ul> -->
+
+<ul
+  class="d-flex flex-wrap justify-content-center"
+  *ngIf="roundQuickReplyBtn && quickReplys.length <= 2"
+  style="margin-bottom: 0px !important; margin-top: 0px !important"
+>
+  <li *ngFor="let b of quickReplys">
+    <app-rounded-button
+      suggestionButtonData="{{ b.text }}"
+      suggestionButtonValue="{{ b.value }}"
+      (hideButtonStatus)="buttonStatus($event)"
+    ></app-rounded-button>
+  </li>
+</ul>

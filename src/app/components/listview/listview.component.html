@@ -1,0 +1,18 @@
+<div class="title-container">
+    <div class="icon-container">
+        <img src="assets/note.svg" alt="o" />
+    </div>
+    <h4 class="title text-center">{{listview.title}}</h4>
+</div>
+<div class="listview-box neum-shadow">
+    <div class="list-item" *ngFor="let item of listview.data">
+        <ng-container class="" *ngFor="let cnt of item.values">
+           <div class="icon-container">
+               <img src="assets/checked.svg" alt="o" />
+            </div> 
+           <div class="text-container" [innerHTML]="cnt.text"></div>
+        </ng-container>
+    </div>
+</div>
+
+<!-- [ngClass]="'txt-'+cnt.alignment" -->

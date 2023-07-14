@@ -1,0 +1,40 @@
+<div class="content-area neum-shadow ticket pb-1">
+  <h5 class="text-center ticket-header pt-3 pb-3">
+    <span class="ticket-icon mr-2">
+      <img src="https://coliveshona.blob.core.windows.net/coliveshonabot/Open%20ticket%20%E2%80%93%201.svg" alt="ticket-icon"> 
+    </span>
+      {{ tickets.title || 'Ticket' }}
+    </h5>
+  <table class="table">
+    <tbody style="color: white;">
+      <tr *ngFor="let t of tickets.data">
+        <td>
+          <span class="pl-2 pr-2 font-600">{{ t.key }}</span>
+          <span class="pl-2 pr-2 description">{{ t.value }}</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ul class="d-flex pl-0 justify-content-center">
+    <li *ngFor="let action of tickets.actions;let first = first;let last = last">
+        <button class="rounded btn-custom drop-shadow hover-effect" [ngClass]="{'mr-1':first, 'ml-1': last}" *ngIf="!action.redirectionTo" (click)="onButtonClick(action.value,tickets.data,tickets.attachment)">{{ action.title }}</button>
+        <a class="rounded btn-custom drop-shadow hover-effect text-decoration-none" [ngClass]="{'mr-1':first, 'ml-1': last}" *ngIf="action.redirectionTo" href="{{action.redirectionTo}}" target="_blank">{{ action.title }}</a>
+    </li>
+</ul> 
+</div>
+
+
+
+<!-- <div *ngIf="i + 1 < carouselItems.length" class="property-item" >
+        <div class="col-sm-12">
+          <div class="row">
+            <div class="col-xs-3 no-pad">
+              <div class="property-image"><img [src]=carouselItems[i+1].img /></div>
+            </div>
+            <div class="col-xs-9 content-area">
+              <h4 class="property-name">{{carouselItems[i+1].name}}<i class="fa fa-bookmark-o" aria-hidden="true"></i>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div> -->

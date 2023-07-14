@@ -1,0 +1,102 @@
+<div class="row fullHeight_VH fullWidth_vw display-flex p-0 m-0"  >
+  <div class="container animate__animated animate__fadeInRightBig">
+    <div class="row h-100" style="padding: 1.6rem 2rem">
+      <div class="col-12 text-center">
+        <div class="display-flex mb-2">
+          <div class="logoDiv">
+            <img [src]="brandDetails.icon" alt="logo" class="w-100 h-100" />
+          </div>
+        </div>
+        <div><p>{{brandDetails.title}}</p></div>
+      </div>
+      <div class="col-12">
+        <div class="text-center">Login to continue</div>
+        <div class="form">
+          <form action="" autocomplete="off">
+            <div id="otp" class="inputs d-flex flex-row justify-content-center">
+              <input
+                class="text-center box-shadow OTP-width"
+                type="text"
+                id="first"
+                maxlength="1"
+                required
+                name="firstOt"
+                autocomplete="off"
+              />
+              <input
+                class="text-center box-shadow OTP-width"
+                type="text"
+                id="second"
+                maxlength="1"
+                required
+                name="secondOt"
+                autocomplete="off"
+              />
+              <input
+                class="text-center box-shadow OTP-width"
+                type="text"
+                id="third"
+                maxlength="1"
+                required
+                name="thirdOt"
+                autocomplete="off"
+              />
+              <input
+                class="text-center box-shadow OTP-width"
+                type="text"
+                id="fourth"
+                maxlength="1"
+                required
+                name="fourthOt"
+                autocomplete="off"
+              />
+              <input
+                class="text-center box-shadow OTP-width"
+                type="text"
+                id="fifth"
+                required
+                maxlength="1"
+                name="fifthOt"
+                autocomplete="off"
+              />
+              <input
+                class="text-center box-shadow OTP-width"
+                type="text"
+                id="sixth"
+                required
+                name="sixthOt"
+                maxlength="1"
+                autocomplete="off"
+              />
+            </div>
+
+            <button
+              class="w-100 cardButton box-shadow mb-3"
+              (click)="verifyOTP()"
+            >
+              Verify
+            </button>
+            <div class="text-center fs-14">
+              <span style="color: #6b6b6b">Did't get the OTP?</span>
+              <a *ngIf="resendOTPflag;else timer "  style="color: #4081bb" class="ml-2 pointer" (click)="resendOtp()">Resend</a>
+              <ng-template #timer>
+                <a id="timer" style="color: #4081bb" class="ml-2 pointer" (click)="resendOtp()"></a>
+              </ng-template>
+
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-12 d-flex justify-content-center align-items-end">
+        <div class="text-center">
+          <span class="note fs-11">
+            Note: A one time password(OTP) will be shared on <br />
+            your given mobile number for verification purpuse.
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <app-welcome-user *ngIf="welcomUserFlag"></app-welcome-user> -->

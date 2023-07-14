@@ -1,0 +1,24 @@
+<div class="np-slider-wrapper neum-shadow">
+    <ul class="d-flex pager">
+        <li *ngFor="let item of surveyDetails; let i = index">
+            <a [ngClass]="currentSlide==i?'current':''" (click)="slickModal.slickGoTo(i)">{{i+1}}</a>
+        </li>
+    </ul>
+    <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" (afterChange)="afterChange($event)">
+        <div ngxSlickItem class="np-single-slide" *ngFor="let item of surveyDetails; let i = index">
+            <h4>{{item.title}}</h4>
+            <div class="seperator"></div>
+            <ul class="d-flex opt">
+                <li *ngFor="let opt of item.options">
+                    <a href=""><img [src]=opt.display /></a>
+                </li>
+            </ul>
+        </div>
+    </ngx-slick-carousel>
+    <ul class="d-flex like">
+        <li class="arrow ar-left"><a (click)="slickModal.slickPrev()"><i class="fa fa-long-arrow-left"
+                    aria-hidden="true"></i></a></li>
+        <li class="arrow ar-right"><a (click)="slickModal.slickNext()"><i class="fa fa-long-arrow-right"
+                    aria-hidden="true"></i></a></li>
+    </ul>
+</div>

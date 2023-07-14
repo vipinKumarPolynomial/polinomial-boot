@@ -1,0 +1,18 @@
+<div class="d-flex justify-content-end">
+    <div class="thumbnail-wrap neum-shadow d-flex flex-column">
+        <img [src]="thumbnail.url" *ngIf="format=='image'" class="full-width" [alt]="thumbnail.name" />
+        <iframe [src]="docURL" *ngIf="format=='application' && uploaded" class="full-width"></iframe>
+        <div class="d-flex justify-content-around align-items-center details">
+            <i class="fa" [ngClass]="format=='image'?'fa-image':'fa-file'"></i>
+            <div class="flex-1 overflow-hidden pl-1">
+                <span class="text-ellipsis word-break-all">{{ thumbnail.name }}</span>
+                <ul class="d-flex align-items-center">
+                    <!-- <li *ngIf="thumbnail.pageCount">{{ thumbnail.pageCount }}</li> -->
+                    <!-- <li *ngIf="thumbnail.format">{{ thumbnail.format }}</li> -->
+                    <li *ngIf="thumbnail.format">{{ this.formatBytes(thumbnail.size) }}</li>
+                </ul>
+            </div>
+        </div>
+        <span class="text-center" *ngIf="!uploaded">{{ statusText }}</span>
+    </div>
+</div>

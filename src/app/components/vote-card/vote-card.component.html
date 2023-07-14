@@ -1,0 +1,6 @@
+<h4>{{voteCard.title}}</h4>
+<div class="voteCard neum-shadow d-flex flex-wrap" *ngIf="hideStatus">
+    <div class="myItems" *ngFor="let item of voteCard.data">
+        <span (click)="onButtonClick(item.value)">{{item.text}}</span>
+    </div>
+</div>

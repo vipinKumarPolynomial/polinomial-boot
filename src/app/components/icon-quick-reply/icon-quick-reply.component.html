@@ -1,0 +1,18 @@
+<ul class="d-flex horizontal flex-wrap iqreply" *ngIf="iconQuickReplyBtn && quickReplys.length<=3">
+    <li *ngFor="let b of quickReplys">
+        <app-suggestion-button *ngIf="b.iconUrl" image={{b.iconUrl}} buttonName={{b.text}} buttonValue={{b.value}}
+            (hideButtonStatus)="buttonStatus($event)"></app-suggestion-button>
+        <app-rounded-button *ngIf="!b.iconUrl" suggestionButtonData={{b.value}}
+            (hideButtonStatus)="buttonStatus($event)"></app-rounded-button>
+    </li>
+</ul>
+<div class="iqreply" *ngIf="iconQuickReplyBtn && quickReplys.length>3">
+    <ngx-slick-carousel class="carousel"  #slickModal="slick-carousel" [config]="slideConfig">
+        <div ngxSlickItem class="slider" *ngFor="let b of quickReplys">
+            <app-suggestion-button *ngIf="b.iconUrl" image={{b.iconUrl}} buttonName={{b.text}} buttonValue={{b.value}}
+                (hideButtonStatus)="buttonStatus($event)"></app-suggestion-button>
+            <app-rounded-button *ngIf="!b.iconUrl" suggestionButtonData={{b.value}}
+                (hideButtonStatus)="buttonStatus($event)"></app-rounded-button>
+        </div>
+    </ngx-slick-carousel>
+</div>

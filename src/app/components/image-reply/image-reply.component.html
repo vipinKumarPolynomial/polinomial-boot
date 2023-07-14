@@ -1,0 +1,12 @@
+<P *ngIf="imageReply.title">{{imageReply.title}}</P>
+<div style="margin-left: 10px;margin-right: 20px;">
+    <ngx-slick-carousel class="reply-row" #slickModal="slick-carousel" [config]="slideConfig">
+        <div ngxSlickItem class="reply-box neum-shadow hover-effect" *ngFor="let val of imageReply.data"
+            (click)="onButtonClick(val.value)">
+            <div>
+                <img [ngClass]="{'brightness':checkURL(val.imageUrl)}" [src]=val.imageUrl />
+            </div>
+            <p>{{val.text}}</p>
+        </div>
+    </ngx-slick-carousel>
+</div>

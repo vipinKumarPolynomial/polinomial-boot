@@ -1,0 +1,13 @@
+<div class="form-card neum-shadow">
+    <div *ngFor="let fm of formCard.data" class="form-wrap">
+        <label>{{fm.inputTitle}}</label>
+        <input *ngIf="inputItem.includes(fm.inputType)" type="{{fm.inputType}}" />
+        <ul *ngIf="fm.inputType=='options'" class="options d-flex flex-wrap">
+            <li *ngFor="let opt of fm.value">{{opt}}</li>
+        </ul>
+        <select *ngIf="fm.inputType=='dropdown'">
+            <option></option>
+            <option *ngFor="let opt of fm.value">{{opt}}</option>
+        </select>
+    </div>
+</div>

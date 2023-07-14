@@ -1,0 +1,115 @@
+<div class="row fullHeight_VH fullWidth_vw display-flex p-0 m-0">
+  <div class="container animate__animated animate__fadeInRightBig">
+    <div class="row h-100 " style="padding: 1.6rem 2rem;">
+      <div class="col-12 text-center">
+        <div class="display-flex mb-2">
+          <div class="logoDiv">
+            <img [src]="brandDetails.icon" alt="logo" class="w-100 h-100" />
+          </div>
+        </div>
+        <div><p>{{brandDetails.title}}</p></div>
+      </div>
+      <div class="col-12 text-center " style="margin: 2rem 0rem;">
+        <span class="fs-13">Fill your details to register</span>
+      </div>
+      <div class="col-12 display-flex mb-2 " style="flex-direction: column;">
+        <div class="dp display-flex box-shadow">
+          <i class="fa-solid fa-user" style="color:#666666"></i>
+        </div>
+        <div class="text-center">
+          <a style="text-decoration: underline; color: #4081bb" class="fs-12 pointer">Upload photo</a>
+        </div>
+      </div>
+      <div class="col-12 display-flex mb-3">
+        <div>
+          <div class="form">
+            <form #registration="ngForm"  action="">
+              <div class="box-shadow cardInput d-flex">
+                <div class="display-flex mr-2">
+                  <i class="fa-solid fa-user"></i>
+                </div>
+                <input
+                  type="text"
+                  name="firstName"
+                  #First_name="ngModel"
+                  class="w-100 boder-none"
+                  placeholder="First name"
+                  required
+                  [(ngModel)]="userRegistrationData.first_Name"
+                  (keypress)="keyValidation($event,'string')"
+                />
+              </div>
+              <div class="box-shadow cardInput d-flex">
+                <div class="display-flex mr-2">
+                  <i class="fa-solid fa-user"></i>
+                </div>
+                <input
+                  type="text"
+                  name="lastname"
+                  required
+                  [(ngModel)]="userRegistrationData.last_Name"
+                  #last_Name="ngModel"
+                  class="w-100 boder-none"
+                  placeholder="Last name"
+                  (keypress)="keyValidation($event,'string')"
+                />
+              </div>
+              <div class="box-shadow cardInput d-flex">
+                <div class="display-flex mr-2">
+                  <i class="fa-solid fa-envelope"></i>
+                </div>
+                <input
+                  type="text"
+                  name="email"
+                  [(ngModel)]="userRegistrationData.email"
+                  #userEmail="ngModel"
+                  required
+                  class="w-100 boder-none"
+                  pattern="^((?!\.)[a-zA-Z0-9._%+-]+@(?!-)[A-Za-z0-9-]+(\.[A-Za-z]{2,})+)$"
+                  placeholder="Email address"
+                />
+              </div>
+              <div class="box-shadow cardInput d-flex">
+                <div class="display-flex mr-2">
+                  <i class="fa-solid fa-phone"></i>
+                </div>
+                <input
+                  type="text"
+                  name="mobile"
+                  required
+                  [(ngModel)]="userRegistrationData.phone_number"
+                  #mobile="ngModel"
+                  (keypress)="keyValidation($event,'number')"
+                  class="w-100 boder-none"
+                  placeholder="Mobile Number"
+                  pattern="^((\\+91-?)|0)?[6-9][0-9]{9}$"
+                />
+              </div>
+              <button class="w-100 cardButton box-shadow" (click)="sendOTP(registration)">
+                Send verification OTP
+              </button>
+            </form>
+          </div>
+          <div class="text-center note-height my-4">
+            <span class="note fs-11 " >
+              Note: A one time password(OTP) will be shared on <br />
+              your given mobile number for verification purpuse.
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="text-center fs-14">
+          <span style="color: #6b6b6b">Already registered?</span>
+          <a
+            style="text-decoration: underline; color: #4081bb"
+            class="ml-2 pointer"
+            (click)="BackToLogin()"
+            >Login</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
